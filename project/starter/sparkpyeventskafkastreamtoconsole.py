@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col, unbase64, base64, split
-from pyspark.sql.types import StructField,DoubleType, StructType, StringType, BooleanType, ArrayType, DateType
+from pyspark.sql.types import StructField,FloatType, StructType, StringType, BooleanType, ArrayType, DateType
 
 spark = SparkSession.builder.appName("CustomerRisk").getOrCreate()
 spark.sparkContext.setLogLevel('WARN')
@@ -18,7 +18,7 @@ stringStreamDF = rawStreamDF.selectExpr("CAST(value AS STRING)")
 
 jsonSchema = StructType([
     StructField("customer", StringType()),
-    StructField("score", DoubleType()),
+    StructField("score", FloatType()),
     StructField("riskSate",DateType())
 ])
 
